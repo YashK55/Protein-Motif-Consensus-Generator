@@ -1,0 +1,54 @@
+# Java compiled files
+*.class
+
+# Build output
+bin/
+out/
+build/
+target/
+dist/
+
+# JAR/build artifacts
+*.jar
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Crash dumps
+hs_err_pid*
+
+# IDE files
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+
+# Eclipse generated files
+.factorypath
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Packaging output
+*.msi
+
+# Generated installer/output folders
+installer/
+release/
+
+# Temporary packaging files
+jpackage-output/
+
+# Study
+study.md
