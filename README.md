@@ -50,9 +50,7 @@ Protein-Motif-Consensus-Generator/
 │   ├── Main.java               # UI dashboard layout, navigation, page routing, and events
 │   ├── SequenceProcessor.java  # FASTA header removal and residue character validations
 │   ├── MotifGenerator.java     # Column representation calculator and PROSITE pattern generator
-│   ├── Alignment.java          # Needleman-Wunsch and progressive alignment algorithm
-│   ├── Motif.java              # Model class representing a motif segment
-│   └── PrositePattern.java     # Model representing predefined PROSITE database entries
+│   └── Alignment.java          # Needleman-Wunsch and progressive alignment algorithm
 │
 ├── package.bat                 # Windows compilation and jpackage setup installer script
 ├── logo.png                    # Brand logo displayed in header and about card

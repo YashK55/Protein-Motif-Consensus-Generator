@@ -18,7 +18,6 @@ public class MotifGenerator {
         }
 
         int colLength = alignedList.get(0).length();
-        int numSeqs = alignedList.size();
 
         for (int col = 0; col < colLength; col++) {
             HashMap<Character, Integer> counts = new HashMap<>();
