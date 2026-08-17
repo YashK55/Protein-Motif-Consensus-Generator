@@ -7,8 +7,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Main application frame. coordinates sequence input, dynamic progressive alignment,
- * consensus generation, and PROSITE-style pattern generation, presenting them in a unified vertical scroll.
+ * Main application frame. coordinates sequence input, dynamic progressive
+ * alignment,
+ * consensus generation, and PROSITE-style pattern generation, presenting them
+ * in a unified vertical scroll.
  */
 public class Main extends JFrame {
 
@@ -198,8 +200,7 @@ public class Main extends JFrame {
         inputPanel.setBackground(Color.WHITE);
         inputPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(226, 232, 240), 1),
-                new EmptyBorder(15, 15, 15, 15)
-        ));
+                new EmptyBorder(15, 15, 15, 15)));
 
         JPanel inputHeader = new JPanel(new GridLayout(2, 1, 0, 4));
         inputHeader.setOpaque(false);
@@ -207,7 +208,8 @@ public class Main extends JFrame {
         inputTitle.setFont(new Font("Segoe UI", Font.BOLD, 15));
         inputTitle.setForeground(new Color(24, 43, 73));
 
-        JLabel inputDesc = new JLabel("Enter at least two protein sequences. Sequences may be unaligned and may use FASTA format.");
+        JLabel inputDesc = new JLabel(
+                "Enter at least two protein sequences. Sequences may be unaligned and may use FASTA format.");
         inputDesc.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inputDesc.setForeground(new Color(100, 116, 139));
 
@@ -248,8 +250,7 @@ public class Main extends JFrame {
         resultsPanel.setBackground(Color.WHITE);
         resultsPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(226, 232, 240), 1),
-                new EmptyBorder(15, 15, 15, 15)
-        ));
+                new EmptyBorder(15, 15, 15, 15)));
 
         JLabel resultsTitle = new JLabel("2. VISUAL ALIGNMENT & MOTIF");
         resultsTitle.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -262,7 +263,8 @@ public class Main extends JFrame {
         alignmentViewArea.setBackground(new Color(248, 250, 252));
         alignmentViewArea.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
-        // Horizontal scrolling is maintained by wrapping alignmentViewArea in a JScrollPane
+        // Horizontal scrolling is maintained by wrapping alignmentViewArea in a
+        // JScrollPane
         JScrollPane resultsScroll = new JScrollPane(alignmentViewArea);
         resultsScroll.setPreferredSize(new Dimension(1100, 360)); // Reduced height from 420 to 360
         resultsPanel.add(resultsScroll, BorderLayout.CENTER);
@@ -299,7 +301,8 @@ public class Main extends JFrame {
     }
 
     /**
-     * Triggers sequence parsing, alignment calculations, and formats the unified results area.
+     * Triggers sequence parsing, alignment calculations, and formats the unified
+     * results area.
      */
     private void processAnalysis() {
         try {
@@ -315,7 +318,7 @@ public class Main extends JFrame {
 
             // Format layout text inside alignmentViewArea
             StringBuilder sb = new StringBuilder();
-            int labelWidth = 13; // Space allocated for label prefixes e.g. "Sequence 1   "
+            int labelWidth = 13; // Space allocated for label prefixes e.g. "Sequence 1 "
 
             // 1. Aligned Sequences
             for (int i = 0; i < alignedList.size(); i++) {
@@ -346,15 +349,13 @@ public class Main extends JFrame {
                     this,
                     ex.getMessage(),
                     "Sequence Validation Warning",
-                    JOptionPane.WARNING_MESSAGE
-            );
+                    JOptionPane.WARNING_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
                     this,
                     "An unexpected error occurred:\n" + ex.getMessage(),
                     "System Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -364,14 +365,18 @@ public class Main extends JFrame {
     }
 
     private void loadSampleSequences() {
-        String example = ">Protein 1\n" +
-                         "GASGAGKS\n\n" +
-                         ">Protein 2\n" +
-                         "GATGAGKT\n\n" +
-                         ">Protein 3\n" +
-                         "GASGAGKS\n\n" +
-                         ">Protein 4\n" +
-                         "GASGAGKT";
+        String example = ">Human CDK2 - P24941\n" +
+                "MENFQKVEKIGEGTYGVVYKARNKLTGEVVALKKIRLDTETEGVPSTAIREISLLKELNHPNIVKLLDVIHTENKLYLVFEFLHQDLKKFMDASALTGIPLPLIKSYLFQLLQGLAFCHSHRVLHRDLKPQNLLINTEGAIKLADFGLARAFGVPVRTYTHEVVTLWYRAPEILLGCKYYSTAVDIWSLGCIFAEMVTRRALFPGDSEIDQLFRIFRTLGTPDEVVWPGVTSMPDYKPSFPKWARQDFSKVVPPLDEDGRSLLSQMLHYDPNKRISAKAALAHPFFQDVTKPVPHLRL\n\n"
+                +
+                ">Rat CDK2 - Q63699\n" +
+                "MENFQKVEKIGEGTYGVVYKAKNKLTGEVVALKKIRLDTETEGVPSTAIREISLLKELNHPNIVKLLDVIHTENKLYLVFEFLHQDLKKFMDASALTGLPLPLIKSYLFQLLQGLAFCHSHRVLHRDLKPQNLLINAEGSIKLADFGLARAFGVPVRTYTHEVVTLWYRAPEILLGCKYYSTAVDIWSLGCIFAEMVTRRALFPGDSEIDQLFRIFRTLGTPDEVVWPGVTSMPDYKPSFPKWARQDFSKVVPPLDEDGRSLLSQMLHYDPNKRISAKAALAHPFFQDVTKPVPHLRL\n\n"
+                +
+                ">Chimpanzee CDK2\n" +
+                "MENFQKVEKIGEGTYGVVYKARNKLTGEVVALKKIRLDTETEGVPSTAIREISLLKELNHPNIVKLLDVIHTENKLYLVFEFLHQDLKKFMDASALTGIPLPLIKSYLFQLLQGLAFCHSHRVLHRDLKPQNLLINTEGAIKLADFGLARAFGVPVRTYTHEVVTLWYRAPEILLGCKYYSTAVDIWSLGCIFAEMVTRRALFPGDSEIDQLFRIFRTLGTPDEVVWPGVTSMPDYKPSFPKWARQDFSKVVPPLDEDGRSLLSQMLHYDPNKRISAKAALAHPFFQDVTKPVPHLRL\n\n"
+                +
+                ">Golden Eagle CDK2 - A0A663F0T5\n" +
+                "MENFQKVEKIGEGTYGVVYKARNKVTGEVVALKKIRLDTETEGVPSTAIREISLLKELNHPNIVKLLDVIHTENKLYLVFEFLHQDLKKFMDSSSISGIALPLIKSYLFQLLQGLAFCHAHRVLHRDLKPQNLLINADGAIKLADFGLARAFGVPVRTYTHEVVTLWYRAPEILLGCKYYSTAVDIWSLGCIFAEMITRRALFPGDSEIDQLFRIFRTLGTPDEAAWPGVTAMPDYKPSFPKWARQDFGKVVPPLDEEGRKLLAQMLHYDPNKRISAKAALGHPFFRDVTRAVPHLRL";
+
         sequenceInputArea.setText(example);
     }
 
@@ -388,8 +393,7 @@ public class Main extends JFrame {
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(226, 232, 240), 1),
-                new EmptyBorder(30, 30, 30, 30)
-        ));
+                new EmptyBorder(30, 30, 30, 30)));
 
         // Load and display logo.png inside the About Page card
         try {
@@ -417,11 +421,13 @@ public class Main extends JFrame {
 
         JTextArea desc = new JTextArea(
                 "A simple Java desktop application that analyzes multiple protein amino-acid sequences, " +
-                "identifies conserved regions, generates a consensus sequence, and produces a PROSITE-style motif pattern.\n\n" +
-                "The application accepts sequences of different lengths, aligns them using dynamic programming (Needleman-Wunsch), " +
-                "and generates a consensus and pattern representation detailing conserved (>= 70%) residues, variable bracket groups, " +
-                "and compressed variable positions like x(3)."
-        );
+                        "identifies conserved regions, generates a consensus sequence, and produces a PROSITE-style motif pattern.\n\n"
+                        +
+                        "The application accepts sequences of different lengths, aligns them using dynamic programming (Needleman-Wunsch), "
+                        +
+                        "and generates a consensus and pattern representation detailing conserved (>= 70%) residues, variable bracket groups, "
+                        +
+                        "and compressed variable positions like x(3).");
         desc.setFont(new Font("Segoe UI", Font.PLAIN, 15));
         desc.setForeground(new Color(71, 85, 105));
         desc.setLineWrap(true);
