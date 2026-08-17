@@ -65,5 +65,38 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ github.ref_name }}" --title "Release ${{ github.ref_name }}" --notes "Automated release for version ${{ github.ref_name }}." || echo "Release already exists"
-          gh release upload "${{ github.ref_name }}" dist/ProteinMotifConsensusGenerator-*.exe --clobber
+          # Retry loop for creating the release
+          for i in {1..5}; do
+            echo "Attempt $i to create release..."
+            if gh release create "${{ github.ref_name }}" --title "Release ${{ github.ref_name }}" --notes "Automated release for version ${{ github.ref_name }}." ; then
+              echo "Release created successfully."
+              break
+            else
+              if gh release view "${{ github.ref_name }}" >/dev/null 2>&1; then
+                echo "Release already exists."
+                break
+              fi
+              echo "Release creation failed. Retrying in 10 seconds..."
+              sleep 10
+            fi
+            if [ $i -eq 5 ]; then
+              echo "Failed to create release after 5 attempts."
+              exit 1
+            fi
+          done
+
+          # Retry loop for uploading the asset
+          for i in {1..5}; do
+            echo "Attempt $i to upload assets..."
+            if gh release upload "${{ github.ref_name }}" dist/ProteinMotifConsensusGenerator-*.exe --clobber ; then
+              echo "Assets uploaded successfully."
+              break
+            else
+              echo "Asset upload failed. Retrying in 10 seconds..."
+              sleep 10
+            fi
+            if [ $i -eq 5 ]; then
+              echo "Failed to upload assets after 5 attempts."
+              exit 1
+            fi
+          done
